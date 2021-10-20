@@ -26,7 +26,7 @@ class _CadastroState extends State<Cadastro> {
   }
 
   enviaMsg() {
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 1), () {
       if (mensagem != "") {
         // ignore: deprecated_member_use
         _scaffoldKey.currentState.showSnackBar(new SnackBar(
