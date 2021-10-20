@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:teste_dr_ie/bloc/bloc.dart';
+import 'package:teste_dr_ie/variaveis_globais/globals.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key key}) : super(key: key);
@@ -20,6 +22,17 @@ class _CadastroState extends State<Cadastro> {
   @override
   void initState() {
     super.initState();
+    enviaMsg();
+  }
+
+  enviaMsg() {
+    Future.delayed(Duration(seconds: 2), () {
+      if (mensagem != "") {
+        // ignore: deprecated_member_use
+        _scaffoldKey.currentState.showSnackBar(new SnackBar(
+            duration: Duration(seconds: 1), content: new Text(mensagem)));
+      }
+    });
   }
 
   @override
@@ -105,7 +118,12 @@ class _CadastroState extends State<Cadastro> {
                     fontWeight: FontWeight.w300),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              var comando = new bloc();
+              setState(() {
+                comando.getServidor();
+              });
+            },
             shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(10.0))));
 
