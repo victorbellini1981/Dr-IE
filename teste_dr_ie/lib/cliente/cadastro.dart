@@ -39,13 +39,22 @@ class _CadastroState extends State<Cadastro> {
   Widget build(BuildContext context) {
     final nome = TextFormField(
       decoration: const InputDecoration(
-        labelText: 'Nome:',
-        labelStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.bold),
-      ),
+          labelText: 'Nome:',
+          labelStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.bold),
+          contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.orange,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+            color: Colors.orange,
+          ))),
       style: TextStyle(
         color: Colors.black,
       ),
@@ -61,13 +70,22 @@ class _CadastroState extends State<Cadastro> {
 
     final descricao = TextFormField(
       decoration: const InputDecoration(
-        labelText: 'Descrição:',
-        labelStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.bold),
-      ),
+          labelText: 'Descrição:',
+          labelStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.bold),
+          contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.orange,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+            color: Colors.orange,
+          ))),
       style: TextStyle(
         color: Color(0xffb22222),
       ),
@@ -83,13 +101,22 @@ class _CadastroState extends State<Cadastro> {
 
     final valor = TextFormField(
       decoration: const InputDecoration(
-        labelText: 'Valor:',
-        labelStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.bold),
-      ),
+          labelText: 'Valor:',
+          labelStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.bold),
+          contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.orange,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+            color: Colors.orange,
+          ))),
       style: TextStyle(
         color: Color(0xffb22222),
       ),
@@ -155,7 +182,7 @@ class _CadastroState extends State<Cadastro> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 40),
                 nome,
                 SizedBox(height: 10),
                 descricao,
