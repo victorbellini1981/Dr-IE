@@ -4,7 +4,7 @@ import 'package:teste_dr_ie/variaveis_globais/globals.dart';
 
 class bloc {
   getServidor() async {
-    String url = 'http://localhost:3000/cad';
+    String url = 'http://192.168.0.105:3000/cad';
 
     http.Response response;
 

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:teste_dr_ie/bloc/bloc.dart';
 import 'package:teste_dr_ie/variaveis_globais/globals.dart';
 
@@ -17,117 +18,146 @@ class _CadastroState extends State<Cadastro> {
 
   TextEditingController txtnome = new TextEditingController();
   TextEditingController txtdescricao = new TextEditingController();
-  TextEditingController txtvalor = new TextEditingController();
+  MoneyMaskedTextController txtvalor =
+      new MoneyMaskedTextController(leftSymbol: 'R\$ ');
 
   @override
   void initState() {
     super.initState();
-    enviaMsg();
-  }
-
-  enviaMsg() {
-    Future.delayed(Duration(seconds: 1), () {
-      if (mensagem != "") {
-        // ignore: deprecated_member_use
-        _scaffoldKey.currentState.showSnackBar(new SnackBar(
-            duration: Duration(seconds: 1), content: new Text(mensagem)));
-      }
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final nome = TextFormField(
-      decoration: const InputDecoration(
-          labelText: 'Nome:',
-          labelStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontFamily: 'Montserrat',
-              fontWeight: FontWeight.bold),
-          contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.orange,
-            ),
+    final nome = Container(
+      width: MediaQuery.of(context).size.width * 1,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text(
+                "Nome:",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                ),
+              )
+            ],
           ),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.orange,
-          ))),
-      style: TextStyle(
-        color: Colors.black,
+          TextFormField(
+            decoration: const InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.orange,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                  color: Colors.orange,
+                ))),
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+            ),
+            keyboardType: TextInputType.text,
+            controller: txtnome,
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Campo obrigatório';
+              }
+              return null;
+            },
+          )
+        ],
       ),
-      keyboardType: TextInputType.text,
-      controller: txtnome,
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Campo obrigatório';
-        }
-        return null;
-      },
     );
 
-    final descricao = TextFormField(
-      decoration: const InputDecoration(
-          labelText: 'Descrição:',
-          labelStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontFamily: 'Montserrat',
-              fontWeight: FontWeight.bold),
-          contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.orange,
-            ),
+    final descricao = Container(
+      width: MediaQuery.of(context).size.width * 1,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text(
+                "Descrição:",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                ),
+              )
+            ],
           ),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.orange,
-          ))),
-      style: TextStyle(
-        color: Color(0xffb22222),
+          TextFormField(
+            decoration: const InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.orange,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                  color: Colors.orange,
+                ))),
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+            ),
+            keyboardType: TextInputType.text,
+            controller: txtdescricao,
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Campo obrigatório';
+              }
+              return null;
+            },
+          )
+        ],
       ),
-      keyboardType: TextInputType.text,
-      controller: txtdescricao,
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Campo obrigatório';
-        }
-        return null;
-      },
     );
 
-    final valor = TextFormField(
-      decoration: const InputDecoration(
-          labelText: 'Valor:',
-          labelStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontFamily: 'Montserrat',
-              fontWeight: FontWeight.bold),
-          contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.orange,
-            ),
+    final valor = Container(
+      width: MediaQuery.of(context).size.width * 1,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text(
+                "Valor:",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                ),
+              )
+            ],
           ),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.orange,
-          ))),
-      style: TextStyle(
-        color: Color(0xffb22222),
+          TextFormField(
+            decoration: const InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.orange,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                  color: Colors.orange,
+                ))),
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+            ),
+            keyboardType: TextInputType.number,
+            controller: txtvalor,
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Campo obrigatório';
+              }
+              return null;
+            },
+          )
+        ],
       ),
-      keyboardType: TextInputType.text,
-      controller: txtvalor,
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Campo obrigatório';
-        }
-        return null;
-      },
     );
 
     final btnEnviar = SizedBox(
@@ -147,9 +177,19 @@ class _CadastroState extends State<Cadastro> {
             ),
             onPressed: () {
               var comando = new bloc();
-              setState(() {
-                comando.getServidor();
-              });
+              comando.getServidor();
+              if (mensagem != "") {
+                // ignore: deprecated_member_use
+                _scaffoldKey.currentState.showSnackBar(new SnackBar(
+                    duration: Duration(seconds: 3),
+                    content: new Text(mensagem)));
+              } else {
+                // ignore: deprecated_member_use
+                _scaffoldKey.currentState.showSnackBar(new SnackBar(
+                    duration: Duration(seconds: 3),
+                    content:
+                        new Text("Não foi possível se conectar ao servidor")));
+              }
             },
             shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(10.0))));
