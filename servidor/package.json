@@ -1,0 +1,11 @@
+{
+  "name": "dr_ie_servidor",
+  "version": "1.0.0",
+  "description": "dr_ie_servidor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "joao Victor",
+  "license": "ISC"
+}
