@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 app.get("/", function(req, res) {
-    res.send("<h1>Servidor rodando com ExpressJS</h1>");
+    res.send("<h1>Servidor rodando com sucesso</h1>");
 });
 
 app.get("/cad", function(req, res) {
