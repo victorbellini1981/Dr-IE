@@ -12,15 +12,15 @@ class Bloc extends BlocBase {
   Stream<String> get saida => blocControlador.stream;
 
   getServidor() async {
-    String url = 'http://10.0.0.233:3000/cad';
+    String url2 = 'http://192.168.106.125:3000/msg';
 
-    http.Response response;
+    http.Response response2;
 
-    response = await http.get(Uri.parse(url));
+    response2 = await http.get(Uri.parse(url2));
 
-    Map<String, dynamic> retorno = json.decode(response.body);
+    Map<String, dynamic> retorno2 = json.decode(response2.body);
 
-    mensagem = retorno['mensagem'];
+    mensagem = retorno2['mensagem'];
 
     entrada.add(mensagem);
   }

@@ -6,7 +6,7 @@ app.get("/", function(req, res) {
     res.send("<h1>Teste Dr-IE</h1>");
 });
 
-app.get("/cad", function(req, res) {
+app.get("/msg", function(req, res) {
     res.json( { mensagem: "Cadastro efetuado com sucesso!!!" } );
 });
 

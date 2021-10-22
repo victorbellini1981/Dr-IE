@@ -202,7 +202,7 @@ class _CadastroState extends State<Cadastro> {
                   duration: Duration(seconds: 3),
                 ));
               } else {
-                bloc.getServidor();
+                bloc.getServidor()();
               }
             },
             shape: new RoundedRectangleBorder(
