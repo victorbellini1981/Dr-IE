@@ -15,6 +15,7 @@ class Cadastro extends StatefulWidget {
 class _CadastroState extends State<Cadastro> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  Bloc bloc = new Bloc();
 
   TextEditingController txtnome = new TextEditingController();
   TextEditingController txtdescricao = new TextEditingController();
@@ -23,7 +24,14 @@ class _CadastroState extends State<Cadastro> {
 
   @override
   void initState() {
+    bloc = Bloc();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    bloc.fecharStream();
+    super.dispose();
   }
 
   @override
@@ -176,9 +184,8 @@ class _CadastroState extends State<Cadastro> {
               ),
             ),
             onPressed: () {
-              var comando = new bloc();
-              comando.getServidor();
-              if (mensagem != "") {
+              bloc.getServidor();
+              /* if (mensagem != "") {
                 // ignore: deprecated_member_use
                 _scaffoldKey.currentState.showSnackBar(new SnackBar(
                     duration: Duration(seconds: 3),
@@ -189,7 +196,7 @@ class _CadastroState extends State<Cadastro> {
                     duration: Duration(seconds: 3),
                     content:
                         new Text("Não foi possível se conectar ao servidor")));
-              }
+              } */
             },
             shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(10.0))));
@@ -228,6 +235,24 @@ class _CadastroState extends State<Cadastro> {
                 descricao,
                 SizedBox(height: 10),
                 valor,
+                SizedBox(height: 20),
+                StreamBuilder<String>(
+                    stream: bloc.saida,
+                    initialData: "",
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Text('Erro de conexão com o Bloc');
+                      } else {
+                        return Text(
+                          snapshot.data,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w500),
+                        );
+                      }
+                    }),
                 SizedBox(height: 20),
                 btnEnviar,
               ],
