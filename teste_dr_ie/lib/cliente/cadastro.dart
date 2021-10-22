@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:teste_dr_ie/bloc/bloc.dart';
-import 'package:teste_dr_ie/variaveis_globais/globals.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key key}) : super(key: key);
@@ -15,7 +14,7 @@ class Cadastro extends StatefulWidget {
 class _CadastroState extends State<Cadastro> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
-  Bloc bloc = new Bloc();
+  Bloc bloc;
 
   TextEditingController txtnome = new TextEditingController();
   TextEditingController txtdescricao = new TextEditingController();
@@ -30,7 +29,7 @@ class _CadastroState extends State<Cadastro> {
 
   @override
   void dispose() {
-    bloc.fecharStream();
+    bloc.dispose();
     super.dispose();
   }
 
@@ -184,19 +183,27 @@ class _CadastroState extends State<Cadastro> {
               ),
             ),
             onPressed: () {
-              bloc.getServidor();
-              /* if (mensagem != "") {
+              if (txtnome.text.isEmpty) {
                 // ignore: deprecated_member_use
-                _scaffoldKey.currentState.showSnackBar(new SnackBar(
-                    duration: Duration(seconds: 3),
-                    content: new Text(mensagem)));
+                _scaffoldKey.currentState.showSnackBar(SnackBar(
+                  content: Text('Digite o nome do produto!'),
+                  duration: Duration(seconds: 3),
+                ));
+              } else if (txtdescricao.text.isEmpty) {
+                // ignore: deprecated_member_use
+                _scaffoldKey.currentState.showSnackBar(SnackBar(
+                  content: Text('Digite a descrição do produto!'),
+                  duration: Duration(seconds: 3),
+                ));
+              } else if (txtvalor.numberValue == 0.0) {
+                // ignore: deprecated_member_use
+                _scaffoldKey.currentState.showSnackBar(SnackBar(
+                  content: Text('Digite o valor do produto!'),
+                  duration: Duration(seconds: 3),
+                ));
               } else {
-                // ignore: deprecated_member_use
-                _scaffoldKey.currentState.showSnackBar(new SnackBar(
-                    duration: Duration(seconds: 3),
-                    content:
-                        new Text("Não foi possível se conectar ao servidor")));
-              } */
+                bloc.getServidor();
+              }
             },
             shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(10.0))));
@@ -238,13 +245,12 @@ class _CadastroState extends State<Cadastro> {
                 SizedBox(height: 20),
                 StreamBuilder<String>(
                     stream: bloc.saida,
-                    initialData: "",
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Text('Erro de conexão com o Bloc');
                       } else {
                         return Text(
-                          snapshot.data,
+                          '${snapshot.data}',
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 20,
