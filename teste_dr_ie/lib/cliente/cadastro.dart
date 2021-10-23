@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:teste_dr_ie/bloc/bloc.dart';
+import 'package:teste_dr_ie/variaveis_globais/globals.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key key}) : super(key: key);
@@ -202,7 +203,11 @@ class _CadastroState extends State<Cadastro> {
                   duration: Duration(seconds: 3),
                 ));
               } else {
-                bloc.getServidor()();
+                nomes = txtnome.text;
+                descricoes = txtdescricao.text;
+                valores = txtvalor.numberValue;
+                bloc.postProduto();
+                bloc.getServidor();
               }
             },
             shape: new RoundedRectangleBorder(

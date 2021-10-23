@@ -11,8 +11,27 @@ class Bloc extends BlocBase {
   Sink<String> get entrada => blocControlador.sink;
   Stream<String> get saida => blocControlador.stream;
 
+  postProduto() async {
+    String url = 'http://192.168.0.105:3000/cad';
+
+    http.Response response;
+    final headers = {"Content-type": "application/json"};
+
+    Map obj = Map();
+    obj['nome'] = nomes;
+    obj['descricao'] = descricoes;
+    obj['valor'] = valores;
+
+    String objjson = json.encode(obj);
+
+    response = await http.post(Uri.parse(url), headers: headers, body: objjson);
+
+    print('Status code: ${response.statusCode}');
+    print('Body: ${response.body}');
+  }
+
   getServidor() async {
-    String url2 = 'http://192.168.106.125:3000/msg';
+    String url2 = 'http://192.168.0.105:3000/msg';
 
     http.Response response2;
 
@@ -23,6 +42,7 @@ class Bloc extends BlocBase {
     mensagem = retorno2['mensagem'];
 
     entrada.add(mensagem);
+    print(mensagem);
   }
 
   @override
