@@ -207,7 +207,6 @@ class _CadastroState extends State<Cadastro> {
                 descricoes = txtdescricao.text;
                 valores = txtvalor.numberValue;
                 bloc.postProduto();
-                bloc.getServidor();
               }
             },
             shape: new RoundedRectangleBorder(

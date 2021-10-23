@@ -28,6 +28,8 @@ class Bloc extends BlocBase {
 
     print('Status code: ${response.statusCode}');
     print('Body: ${response.body}');
+
+    getServidor();
   }
 
   getServidor() async {
